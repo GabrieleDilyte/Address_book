@@ -91,18 +91,26 @@ function createAddress(name, phone, email, index, favorite) {
   });
 }
 
-function updateAddressList(arrayList) {
+function updateAddressList(arrayList, searchInput) {
   document.querySelector("#addressBook").innerHTML = null;
 
-  arrayList.forEach((element, index) => {
-    createAddress(
-      element.name,
-      element.phone,
-      element.email,
-      index,
-      element.favorite
-    );
-  });
+  arrayList
+    .filter((element) => {
+      if (searchInput) {
+        return element.name.toUpperCase().includes(searchInput.toUpperCase());
+      } else {
+        return true;
+      }
+    })
+    .forEach((element, index) => {
+      createAddress(
+        element.name,
+        element.phone,
+        element.email,
+        index,
+        element.favorite
+      );
+    });
 }
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -132,15 +140,9 @@ document.querySelector("#addAddress").addEventListener("click", () => {
 document.querySelector("#search").addEventListener("click", (element) => {
   const searchInput = document.querySelector("#searchInput").value;
 
-  if (searchInput && element.target.id === "searchButton") {
-    const filteredList = addressList.filter((element) => {
-      return element.name === searchInput;
-    });
-    updateAddressList(filteredList);
-  } else if (
-    (element.target.id === "searchButton" && !searchInput) ||
-    element.target.id === "clearButton"
-  ) {
+  if (element.target.id === "searchButton") {
+    updateAddressList(addressList, searchInput);
+  } else if (element.target.id === "clearButton") {
     updateAddressList(addressList);
   }
 });
