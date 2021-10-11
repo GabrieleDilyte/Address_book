@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Guest List</title>
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+  </head>
+  <body>
+    <div id="newAddressForm">
+      <form>
+        <label for="name"> Name: </label>
+        <input type="text" name="name" id="name" required /></br>
+        <label for="phone"> Phone number: </label>
+        <input type="tel" name="phone" id="phone" required /></br>
+        <label for="email"> Email: </label>
+        <input type="email" name="email" id="email" required /></br>
+      </form>
+      <button type="button" id="addAddress">Add</button>
+    </div>
+    <div id="search">
+      <label for="search"> Search: </label>
+      <input type="text" name="search" id="searchInput" placeholder="Name" />
+      <button type="button" id="searchButton">Search</button>
+      <button type="button" id="clearButton">Clear</button>
+    </div>
+    <div id="addressBook"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
